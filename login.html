@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form</title>
+  <script>
+    // Retrieve and populate the form fields with data from localStorage
+    window.onload = function() {
+      var storedData = JSON.parse(localStorage.getItem('formData'));
+      if (storedData) {
+        document.getElementById('name1').value = storedData.name1;
+        document.getElementById('lastname').value = storedData.lastname;
+        document.getElementById('age').value = storedData.age;
+      }
+    };
+
+    // Save the form data to localStorage
+    function saveFormData() {
+      var name1 = document.getElementById('name1').value;
+      var lastname = document.getElementById('lastname').value;
+      var age = document.getElementById('age').value;
+
+      var formData = {
+        name1: name1,
+        lastname: lastname,
+        age: age
+      };
+
+      localStorage.setItem('formData', JSON.stringify(formData));
+
+      alert('Form data saved!');
+    }
+  </script>
+</head>
+<body>
+  <form>
+    <input type="text" name="name1" id="name1">
+    <input type="text" name="lastname" id="lastname">
+    <input type="text" name="age" id="age">
+    <input type="button" value="Submit" onclick="saveFormData()">
+  </form>
+</body>
+</html>
